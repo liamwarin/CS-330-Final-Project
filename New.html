@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open+Sans', sans-serif;
+        }
+        #journalism-info {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <nav class="bg-white shadow-md">
+        <ul class="flex justify-center space-x-4 p-4">
+            <li><a href="New.html" class="text-blue-600 hover:text-blue-800">Home</a></li>
+            <li><a href="#resume" class="text-blue-600 hover:text-blue-800">Resume</a></li>
+            <li><a href="bio.html" class="text-blue-600 hover:text-blue-800">Bio</a></li>
+            <li><a href="contact.html" class="text-blue-600 hover:text-blue-800">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="text-center p-10">
+        <h1 class="text-4xl font-bold">Liam Warin</h1>
+        <p class="text-xl mt-2">Producer, Engineer, Writer</p>
+    </header>
+
+    <section id="showcase" class="p-10" aria-labelledby = "Showcase heading">
+        <h2 class="text-3xl font-semibold mb-5">Portfolio Projects</h2>
+        <div class="flex justify-center space-x-10">
+            <div class="w-1/2">
+                <h3 class="text-2xl font-semibold mb-3">DJ Photos</h3>
+                <div id="slideshow" class="h-64 bg-gray-300" aria-label = "Slideshow of DJ Photos"></div>
+            </div>
+            <div class="w-1/2" aria-labelledby="journalism heading">
+                <h3 class="text-2xl font-semibold mb-3">Journalism Portfolio</h3>
+                <label for = "document-selector">Choose a document:</label>
+                <select id="document-selector" class="mb-3 p-2 border border-gray-300">
+                    <option value="">Moot Court Brief</option>
+                    <option value="document1">Mary Warin Obituary</option>
+                    <option value="document2">How Life Lives On</option>
+                </select>
+                <div id="document-display" class="h-64 bg-gray-300"></div>
+                <p id="journalism-portfolio" class="text-blue-600 hover:text-blue-800 cursor-pointer mt-3" aria-describedby="journalism-info">Journalism portfolio</p>
+                <div id="journalism-info" class="mt-2">
+                    <p>Here you will find a collection of my journalistic works. The first selection is my most recent work, which was a Moot Court brief I made for my journalism media law and ethics class, where we break down specific media law points on the topic of Cohen v. Cowles Media Co. The second work is an obituary I wrote for my grandmother. This is an incredibly personal work of mine, as well as one of the strongest pieces I have created. The third document is a story about Philip Savapolous, a student at my school that was murdered alongside his family. I wrote this story about his classmates who continue his legacy, even when he is not around to shape his own.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="p-10" aria-labelledby="resume-heading">
+            <h2 id="resume-heading" class="text-3xl font-semibold mb-5">Resume</h2>
+            <a href="C:\Users\liamw\Downloads\Liam-Warin-Resume_v05 (1).pdf" class="text-blue-600 hover:text-blue-800">Download my resume</a>
+        </section>
+
+    <script>
+        const slideshowImages = [
+            "C:\Users\liamw\Downloads\dj2.jpg",
+            "C:\Users\liamw\Downloads\dj1.jpg",
+            "C:\Users\liamw\Downloads\dj3.png"
+        ];
+        let currentImageIndex = 0;
+
+        function changeImage() {
+            const slideshowElement = document.getElementById('slideshow');
+            slideshowElement.style.backgroundImage = `url('${slideshowImages[currentImageIndex]}')`;
+            currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
+        }
+
+        setInterval(changeImage, 10000);
+        changeImage(); // Initial call to display the first image immediately
+
+        document.getElementById('journalism-portfolio').addEventListener('click', function() {
+            const infoElement = document.getElementById('journalism-info');
+            infoElement.style.display = infoElement.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+
+    <script>
+    
+
+    document.getElementById('document-selector').addEventListener('change', function() {
+        var selectedDocument = this.value;
+
+        // You can use an iframe or a link for the document
+        if (selectedDocument) {
+            // Option 1: Update iframe src
+            var frame = document.getElementById('document-display-frame');
+            frame.src = selectedDocument;
+        }
+    });
+</script>
+
+</body>
+</html>
